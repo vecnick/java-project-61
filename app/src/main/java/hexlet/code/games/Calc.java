@@ -19,7 +19,7 @@ public class Calc {
         int secondNumber = random.nextInt(0, 100);
         String operation = OPERATIONS_MAP.get(String.valueOf(random.nextInt(0, 2)));
 
-        System.out.println("Question: " + firstNumber + operation + secondNumber);
+        System.out.println("Question: " + firstNumber + " " + operation + " " + secondNumber);
         System.out.print("Your answer: ");
         String userAnswer = scanner.next();
 

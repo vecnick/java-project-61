@@ -32,7 +32,8 @@ public class Engine {
 
     public static void gameEngine(String gameNumber) {
         if (!Objects.equals(gameNumber, "1")
-                && !ENGINE_MAP.containsKey(gameNumber) && !RULES_MAP.containsKey(gameNumber)) {
+                && !ENGINE_MAP.containsKey(gameNumber)
+                && !RULES_MAP.containsKey(gameNumber)) {
             return;
         }
 
