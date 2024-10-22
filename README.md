@@ -8,3 +8,6 @@ task 5
 
 task 6
 <img width="501" alt="image" src="https://github.com/user-attachments/assets/f0fd44f3-aa84-4519-b6f8-04de554b9f71">
+
+task 7
+<img width="501" alt="image" src="https://github.com/user-attachments/assets/edd662ce-3341-4a56-96b5-b53dd53415ec">
