@@ -3,6 +3,7 @@ package hexlet.code;
 import hexlet.code.games.Calc;
 import hexlet.code.games.Even;
 import hexlet.code.games.GameResult;
+import hexlet.code.games.Nod;
 
 import java.util.*;
 import java.util.function.Function;
@@ -11,12 +12,14 @@ public class Engine {
 
     public static final Map<String, Function<Scanner, GameResult>> ENGINE_MAP = Map.of(
             "2", Even::game,
-            "3", Calc::game
+            "3", Calc::game,
+            "4", Nod::game
     );
 
     public static final Map<String, String> RULES_MAP = Map.of(
             "2", "Answer 'yes' if the number is even, otherwise answer 'no'.",
-            "3", "What is the result of the expression?"
+            "3", "What is the result of the expression?",
+            "4", "Find the greatest common divisor of given numbers."
     );
 
     public static void gameEngine(String gameNumber) {
