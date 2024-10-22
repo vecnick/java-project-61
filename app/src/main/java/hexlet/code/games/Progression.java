@@ -15,14 +15,14 @@ public class Progression {
         int[] progression = new int[10];
         progression[0] = firstNumber;
 
-        for (int i=1; i<10; i++) {
-            progression[i] = progression[i-1] + progressionStep;
+        for (int i = 1; i < 10; i++) {
+            progression[i] = progression[i - 1] + progressionStep;
         }
 
         StringBuilder question = new StringBuilder();
-        for (int i=0; i<10; i++) {
+        for (int i = 0; i < 10; i++) {
             question.append(" ");
-            if (i!=progressionMiss) {
+            if (i != progressionMiss) {
                 question.append(progression[i]);
             } else {
                 question.append("..");

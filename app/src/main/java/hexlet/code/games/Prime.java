@@ -20,7 +20,9 @@ public class Prime {
     }
 
     public static boolean isPrime(Integer number) {
-        if(number < 2) return false;
+        if (number < 2) {
+            return false;
+        }
         for (int k = 2; k <= Math.sqrt(number); k++) {
             if (number % k == 0) {
                 return false;

@@ -11,7 +11,7 @@ public class Nod {
         int firstNumber = random.nextInt(0, 100);
         int secondNumber = random.nextInt(0, 100);
 
-        System.out.println("Question: " + firstNumber + " " +secondNumber);
+        System.out.println("Question: " + firstNumber + " " + secondNumber);
         System.out.print("Your answer: ");
         String userAnswer = scanner.next();
 
@@ -21,10 +21,13 @@ public class Nod {
     }
 
     private static int mostCommonMultiple(int x, int y) {
-        while(x!=0 && y!=0){
-            if (x>y) x=x%y;
-            else y=y%x;
+        while (x != 0 && y != 0) {
+            if (x > y) {
+                x = x % y;
+            } else {
+                y = y % x;
+            }
         }
-        return x+y;
+        return x + y;
     }
 }

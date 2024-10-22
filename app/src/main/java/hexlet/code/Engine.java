@@ -1,8 +1,15 @@
 package hexlet.code;
 
-import hexlet.code.games.*;
+import hexlet.code.games.Calc;
+import hexlet.code.games.Even;
+import hexlet.code.games.GameResult;
+import hexlet.code.games.Nod;
+import hexlet.code.games.Prime;
+import hexlet.code.games.Progression;
 
-import java.util.*;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Scanner;
 import java.util.function.Function;
 
 public class Engine {
@@ -24,7 +31,8 @@ public class Engine {
     );
 
     public static void gameEngine(String gameNumber) {
-        if (!ENGINE_MAP.containsKey(gameNumber) && !RULES_MAP.containsKey(gameNumber)) {
+        if (!Objects.equals(gameNumber, "1")
+                && !ENGINE_MAP.containsKey(gameNumber) && !RULES_MAP.containsKey(gameNumber)) {
             return;
         }
 
@@ -34,22 +42,26 @@ public class Engine {
         String userName = scanner.next();
         System.out.println("Hello, " + userName + "!");
 
+        if (Objects.equals(gameNumber, "1")) {
+            return;
+        }
+
         System.out.println(RULES_MAP.get(gameNumber));
 
         int counter = 0;
         do {
             GameResult result = ENGINE_MAP.get(gameNumber).apply(scanner);
-            if (result.result()){
+            if (result.result()) {
                 System.out.println("Correct!");
                 counter++;
             } else {
-                System.out.println("'" + result.wrongAnswer() + "' is wrong answer " +
-                        ";(. Correct answer was '" + result.rightAnswer() + "'.");
+                System.out.println("'" + result.wrongAnswer() + "' is wrong answer "
+                        + ";(. Correct answer was '" + result.rightAnswer() + "'.");
                 System.out.println("Let's try again, " + userName + "!");
                 scanner.close();
                 return;
             }
-        } while (counter<3);
+        } while (counter < 3);
         System.out.println("Congratulations, " + userName + "!");
         scanner.close();
     }
