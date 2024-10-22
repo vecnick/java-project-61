@@ -14,7 +14,9 @@ import java.util.function.Function;
 
 public class Engine {
 
-    public static final Map<String, Function<Scanner, GameResult>> ENGINE_MAP = Map.of(
+    private static final int COUNT_OF_TASKS = 3;
+
+    private static final Map<String, Function<Scanner, GameResult>> ENGINE_MAP = Map.of(
             "2", Even::game,
             "3", Calc::game,
             "4", Nod::game,
@@ -22,7 +24,7 @@ public class Engine {
             "6", Prime::game
     );
 
-    public static final Map<String, String> RULES_MAP = Map.of(
+    private static final Map<String, String> RULES_MAP = Map.of(
             "2", "Answer 'yes' if the number is even, otherwise answer 'no'.",
             "3", "What is the result of the expression?",
             "4", "Find the greatest common divisor of given numbers.",
@@ -62,7 +64,7 @@ public class Engine {
                 scanner.close();
                 return;
             }
-        } while (counter < 3);
+        } while (counter < COUNT_OF_TASKS);
         System.out.println("Congratulations, " + userName + "!");
         scanner.close();
     }

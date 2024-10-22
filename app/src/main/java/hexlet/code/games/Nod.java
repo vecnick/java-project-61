@@ -5,11 +5,13 @@ import java.util.Scanner;
 
 public class Nod {
 
+    private static final int NUMBER_MAX = 100;
+
     public static GameResult game(Scanner scanner) {
         Random random = new Random();
 
-        int firstNumber = random.nextInt(0, 100);
-        int secondNumber = random.nextInt(0, 100);
+        int firstNumber = random.nextInt(0, NUMBER_MAX);
+        int secondNumber = random.nextInt(0, NUMBER_MAX);
 
         System.out.println("Question: " + firstNumber + " " + secondNumber);
         System.out.print("Your answer: ");
