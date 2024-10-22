@@ -7,17 +7,15 @@ public class App {
         Scanner scanner = new Scanner(System.in);
         System.out.print("""
                 Please enter the game number and press Enter.
-                2 - Even
                 1 - Greet
+                2 - Even
+                3 - Calc
+                4 - GCD
                 0 - Exit
                 Your choice:\s""");
         String userChoice = scanner.next();
         System.out.println();
-        
-        switch (userChoice) {
-            case "1" -> Cli.startApp();
-            case "2" -> Even.game();
-            default -> {}
-        }
+
+        Engine.gameEngine(userChoice);
     }
 }
