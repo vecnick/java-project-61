@@ -11,14 +11,16 @@ public class Engine {
             "2", Even::game,
             "3", Calc::game,
             "4", Nod::game,
-            "5", Progression::game
+            "5", Progression::game,
+            "6", Prime::game
     );
 
     public static final Map<String, String> RULES_MAP = Map.of(
             "2", "Answer 'yes' if the number is even, otherwise answer 'no'.",
             "3", "What is the result of the expression?",
             "4", "Find the greatest common divisor of given numbers.",
-            "5", "What number is missing in the progression?"
+            "5", "What number is missing in the progression?",
+            "6", "Answer 'yes' if given number is prime. Otherwise answer 'no'."
     );
 
     public static void gameEngine(String gameNumber) {
