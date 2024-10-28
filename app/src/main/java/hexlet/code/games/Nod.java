@@ -1,28 +1,34 @@
 package hexlet.code.games;
 
-import java.util.Random;
-import java.util.Scanner;
+import hexlet.code.Engine;
 
 public class Nod {
 
-    private static final int NUMBER_MAX = 100;
+    public static void game() {
+        String userName = Engine.welcome();
 
-    public static GameResult game(Scanner scanner) {
-        Random random = new Random();
+        System.out.println("Find the greatest common divisor of given numbers.");
 
-        int firstNumber = random.nextInt(0, NUMBER_MAX);
-        int secondNumber = random.nextInt(0, NUMBER_MAX);
+        GameQuestion question1 = generateQuestion();
+        GameQuestion question2 = generateQuestion();
+        GameQuestion question3 = generateQuestion();
 
-        System.out.println("Question: " + firstNumber + " " + secondNumber);
-        System.out.print("Your answer: ");
-        String userAnswer = scanner.next();
-
-        String rightAnswer = String.valueOf(mostCommonMultiple(firstNumber, secondNumber));
-
-        return new GameResult(rightAnswer.equals(userAnswer), userAnswer, rightAnswer);
+        Engine.game(userName,
+                question1.question(), question1.rightAnswer(),
+                question2.question(), question2.rightAnswer(),
+                question3.question(), question3.rightAnswer());
     }
 
-    private static int mostCommonMultiple(int x, int y) {
+    private static GameQuestion generateQuestion() {
+        int firstNumber = Engine.randomInt();
+        int secondNumber = Engine.randomInt();
+
+        String question = firstNumber + " " + secondNumber;
+
+        return new GameQuestion(question, String.valueOf(findRightAnswer(firstNumber, secondNumber)));
+    }
+
+    private static int findRightAnswer(int x, int y) {
         while (x != 0 && y != 0) {
             if (x > y) {
                 x = x % y;

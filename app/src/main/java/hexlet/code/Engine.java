@@ -1,71 +1,80 @@
 package hexlet.code;
 
-import hexlet.code.games.Calc;
-import hexlet.code.games.Even;
-import hexlet.code.games.GameResult;
-import hexlet.code.games.Nod;
-import hexlet.code.games.Prime;
-import hexlet.code.games.Progression;
-
-import java.util.Map;
-import java.util.Objects;
+import java.util.Random;
 import java.util.Scanner;
-import java.util.function.Function;
 
 public class Engine {
 
-    private static final int COUNT_OF_TASKS = 3;
+    private static final int NUMBER_MAX = 100;
 
-    private static final Map<String, Function<Scanner, GameResult>> ENGINE_MAP = Map.of(
-            "2", Even::game,
-            "3", Calc::game,
-            "4", Nod::game,
-            "5", Progression::game,
-            "6", Prime::game
-    );
+    public static int randomInt() {
+        Random random = new Random();
+        return random.nextInt(0, NUMBER_MAX);
+    }
 
-    private static final Map<String, String> RULES_MAP = Map.of(
-            "2", "Answer 'yes' if the number is even, otherwise answer 'no'.",
-            "3", "What is the result of the expression?",
-            "4", "Find the greatest common divisor of given numbers.",
-            "5", "What number is missing in the progression?",
-            "6", "Answer 'yes' if given number is prime. Otherwise answer 'no'."
-    );
-
-    public static void gameEngine(String gameNumber) {
-        if (!Objects.equals(gameNumber, "1")
-                && !ENGINE_MAP.containsKey(gameNumber)
-                && !RULES_MAP.containsKey(gameNumber)) {
-            return;
-        }
-
+    public static String welcome() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Welcome to the Brain Games!");
         System.out.print("May I have your name? ");
         String userName = scanner.next();
         System.out.println("Hello, " + userName + "!");
+        return userName;
+    }
 
-        if (Objects.equals(gameNumber, "1")) {
+    public static void game(String userName,
+                            String question1,
+                            String answer1,
+                            String question2,
+                            String answer2,
+                            String question3,
+                            String answer3) {
+        Scanner scanner = new Scanner(System.in);
+
+        String userAnswer1 = askQuestion(question1, scanner);
+        if (answer1.equals(userAnswer1)) {
+            System.out.println("Correct!");
+        } else {
+            finishGame(userAnswer1, answer1, userName);
+            scanner.close();
             return;
         }
 
-        System.out.println(RULES_MAP.get(gameNumber));
+        String userAnswer2 = askQuestion(question2, scanner);
+        if (answer2.equals(userAnswer2)) {
+            System.out.println("Correct!");
+        } else {
+            finishGame(userAnswer2, answer2, userName);
+            scanner.close();
+            return;
+        }
 
-        int counter = 0;
-        do {
-            GameResult result = ENGINE_MAP.get(gameNumber).apply(scanner);
-            if (result.result()) {
-                System.out.println("Correct!");
-                counter++;
-            } else {
-                System.out.println("'" + result.wrongAnswer() + "' is wrong answer "
-                        + ";(. Correct answer was '" + result.rightAnswer() + "'.");
-                System.out.println("Let's try again, " + userName + "!");
-                scanner.close();
-                return;
-            }
-        } while (counter < COUNT_OF_TASKS);
+        String userAnswer3 = askQuestion(question3, scanner);
+        if (answer3.equals(userAnswer3)) {
+            System.out.println("Correct!");
+        } else {
+            finishGame(userAnswer3, answer3, userName);
+            scanner.close();
+            return;
+        }
+
         System.out.println("Congratulations, " + userName + "!");
         scanner.close();
+    }
+
+    public static String askQuestion(String question,
+                                     Scanner scanner) {
+        System.out.println("Question: " + question);
+
+        System.out.print("Your answer: ");
+        return scanner.next();
+    }
+
+    public static void finishGame(String userAnswer,
+                                  String rightAnswer,
+                                  String userName) {
+        System.out.println("'" + userAnswer + "' is wrong answer "
+                + ";(. Correct answer was '" + rightAnswer + "'.");
+
+        System.out.println("Let's try again, " + userName + "!");
     }
 }

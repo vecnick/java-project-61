@@ -1,37 +1,46 @@
 package hexlet.code.games;
 
-import java.util.Map;
 import java.util.Random;
-import java.util.Scanner;
+import hexlet.code.Engine;
 
 public class Calc {
 
-    private static final int NUMBER_MAX = 100;
+    private static final String[] OPERATIONS = {"+", "-", "*"};
 
-    public static final Map<String, String> OPERATIONS_MAP = Map.of(
-            "0", "+",
-            "1", "-",
-            "2", "*"
-    );
+    public static void game() {
 
-    public static GameResult game(Scanner scanner) {
+        String userName = Engine.welcome();
+
+        System.out.println("What is the result of the expression?");
+
+        GameQuestion question1 = generateQuestion();
+        GameQuestion question2 = generateQuestion();
+        GameQuestion question3 = generateQuestion();
+
+        Engine.game(userName,
+                question1.question(), question1.rightAnswer(),
+                question2.question(), question2.rightAnswer(),
+                question3.question(), question3.rightAnswer());
+    }
+
+    private static GameQuestion generateQuestion() {
         Random random = new Random();
 
-        int firstNumber = random.nextInt(0, NUMBER_MAX);
-        int secondNumber = random.nextInt(0, NUMBER_MAX);
-        String operation = OPERATIONS_MAP.get(String.valueOf(random.nextInt(0, 2)));
+        int firstNumber = Engine.randomInt();
+        int secondNumber = Engine.randomInt();
+        String operation = OPERATIONS[random.nextInt(0, 2)];
 
-        System.out.println("Question: " + firstNumber + " " + operation + " " + secondNumber);
-        System.out.print("Your answer: ");
-        String userAnswer = scanner.next();
+        String question = firstNumber + " " + operation + " " + secondNumber;
 
-        String rightAnswer = switch (operation) {
+        return new GameQuestion(question, findRightAnswer(firstNumber, secondNumber, operation));
+    }
+
+    private static String findRightAnswer(int firstNumber, int secondNumber, String operation) {
+        return switch (operation) {
             case "+" -> String.valueOf(firstNumber + secondNumber);
             case "-" -> String.valueOf(firstNumber - secondNumber);
             case "*" -> String.valueOf(firstNumber * secondNumber);
             default -> "";
         };
-
-        return new GameResult(rightAnswer.equals(userAnswer), userAnswer, rightAnswer);
     }
 }

@@ -1,19 +1,30 @@
 package hexlet.code.games;
 
-import java.util.Random;
-import java.util.Scanner;
+import hexlet.code.Engine;
 
 public class Progression {
 
-    private static final int NUMBER_MAX = 100;
     private static final int COUNT_OF_NUMBERS = 100;
 
-    public static GameResult game(Scanner scanner) {
-        Random random = new Random();
+    public static void game() {
+        String userName = Engine.welcome();
 
-        int firstNumber = random.nextInt(0, NUMBER_MAX);
-        int progressionStep = random.nextInt(0, NUMBER_MAX);
-        int progressionMiss = random.nextInt(0, COUNT_OF_NUMBERS);
+        System.out.println("What number is missing in the progression?");
+
+        GameQuestion question1 = generateQuestion();
+        GameQuestion question2 = generateQuestion();
+        GameQuestion question3 = generateQuestion();
+
+        Engine.game(userName,
+                question1.question(), question1.rightAnswer(),
+                question2.question(), question2.rightAnswer(),
+                question3.question(), question3.rightAnswer());
+    }
+
+    private static GameQuestion generateQuestion() {
+        int firstNumber = Engine.randomInt();
+        int progressionStep = Engine.randomInt();
+        int progressionMiss = Engine.randomInt();
 
         int[] progression = new int[COUNT_OF_NUMBERS];
         progression[0] = firstNumber;
@@ -32,12 +43,6 @@ public class Progression {
             }
         }
 
-        System.out.println("Question:" + question);
-        System.out.print("Your answer: ");
-        String userAnswer = scanner.next();
-
-        String rightAnswer = String.valueOf(progression[progressionMiss]);
-
-        return new GameResult(rightAnswer.equals(userAnswer), userAnswer, rightAnswer);
+        return new GameQuestion(question.toString(), String.valueOf(progression[progressionMiss]));
     }
 }

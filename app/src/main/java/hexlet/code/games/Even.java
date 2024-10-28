@@ -1,21 +1,32 @@
 package hexlet.code.games;
 
-import java.util.Random;
-import java.util.Scanner;
+import hexlet.code.Engine;
 
 public class Even {
 
-    public static GameResult game(Scanner scanner) {
-        Random random = new Random();
+    public static void game() {
 
-        int questionNumber = random.nextInt(0, Integer.MAX_VALUE);
+        String userName = Engine.welcome();
 
-        System.out.println("Question: " + questionNumber);
-        System.out.print("Your answer: ");
-        String userAnswer = scanner.next();
+        System.out.println("Answer 'yes' if the number is even, otherwise answer 'no'.");
 
-        String rightAnswer = questionNumber % 2 == 0 ? "yes" : "no";
+        GameQuestion question1 = generateQuestion();
+        GameQuestion question2 = generateQuestion();
+        GameQuestion question3 = generateQuestion();
 
-        return new GameResult(rightAnswer.equals(userAnswer), userAnswer, rightAnswer);
+        Engine.game(userName,
+                question1.question(), question1.rightAnswer(),
+                question2.question(), question2.rightAnswer(),
+                question3.question(), question3.rightAnswer());
+    }
+
+    private static GameQuestion generateQuestion() {
+        int firstNumber = Engine.randomInt();
+
+        return new GameQuestion(String.valueOf(firstNumber), findRightAnswer(firstNumber));
+    }
+
+    private static String findRightAnswer(int questionNumber) {
+        return questionNumber % 2 == 0 ? "yes" : "no";
     }
 }
