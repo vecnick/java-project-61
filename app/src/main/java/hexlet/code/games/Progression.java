@@ -39,7 +39,10 @@ public class Progression {
 
         StringBuilder question = new StringBuilder();
         for (int i = 0; i < COUNT_OF_NUMBERS; i++) {
-            question.append(" ");
+            if (i != 0) {
+                question.append(" ");
+            }
+
             if (i != progressionMiss) {
                 question.append(progression[i]);
             } else {
