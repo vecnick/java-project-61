@@ -4,7 +4,7 @@ import hexlet.code.Engine;
 
 public class Progression {
 
-    private static final int COUNT_OF_NUMBERS = 100;
+    private static final int COUNT_OF_NUMBERS = 10;
 
     public static void game() {
         String userName = Engine.welcome();
