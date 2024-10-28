@@ -2,6 +2,8 @@ package hexlet.code.games;
 
 import hexlet.code.Engine;
 
+import java.util.Random;
+
 public class Progression {
 
     private static final int COUNT_OF_NUMBERS = 10;
@@ -22,9 +24,11 @@ public class Progression {
     }
 
     private static GameQuestion generateQuestion() {
+        Random random = new Random();
+
         int firstNumber = Engine.randomInt();
         int progressionStep = Engine.randomInt();
-        int progressionMiss = Engine.randomInt();
+        int progressionMiss = random.nextInt(0, COUNT_OF_NUMBERS - 1);
 
         int[] progression = new int[COUNT_OF_NUMBERS];
         progression[0] = firstNumber;
