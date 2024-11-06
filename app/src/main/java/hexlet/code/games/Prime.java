@@ -1,28 +1,27 @@
 package hexlet.code.games;
 
 import hexlet.code.Engine;
+import hexlet.code.GameConstants;
+import hexlet.code.GameUtils;
 
 public class Prime {
 
+    private static final String GAME_RULE = "Answer 'yes' if given number is prime. Otherwise answer 'no'.";
+
     public static void game() {
-        String userName = Engine.welcome();
+        GameRound[] rounds = new GameRound[3];
 
-        System.out.println("Answer 'yes' if given number is prime. Otherwise answer 'no'.");
+        for (int i = 0; i < GameConstants.COUNT_OF_GAMES; i++) {
+            rounds[i] = generateQuestion();
+        }
 
-        GameQuestion question1 = generateQuestion();
-        GameQuestion question2 = generateQuestion();
-        GameQuestion question3 = generateQuestion();
-
-        Engine.game(userName,
-                question1.question(), question1.rightAnswer(),
-                question2.question(), question2.rightAnswer(),
-                question3.question(), question3.rightAnswer());
+        Engine.game(GAME_RULE, rounds);
     }
 
-    private static GameQuestion generateQuestion() {
-        int firstNumber = Engine.randomInt();
+    private static GameRound generateQuestion() {
+        int firstNumber = GameUtils.randomInt();
 
-        return new GameQuestion(String.valueOf(firstNumber), isPrime(firstNumber) ? "yes" : "no");
+        return new GameRound(String.valueOf(firstNumber), isPrime(firstNumber) ? "yes" : "no");
     }
 
     public static boolean isPrime(Integer number) {

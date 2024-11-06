@@ -24,13 +24,14 @@ public class App {
         System.out.println();
 
         switch (userChoice) {
-            case "1" -> Engine.welcome();
+            case "1" -> Cli.startApp();
             case "2" -> Even.game();
             case "3" -> Calc.game();
             case "4" -> Nod.game();
             case "5" -> Progression.game();
             case "6" -> Prime.game();
             default -> {
+                System.out.println("Game number " + userChoice + " doesn't exist");
                 scanner.close();
                 return;
             }
