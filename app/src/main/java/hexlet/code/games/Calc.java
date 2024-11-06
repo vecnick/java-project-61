@@ -11,7 +11,7 @@ public class Calc {
     private static final String[] OPERATIONS = {"+", "-", "*"};
 
     public static void game() {
-        GameRound[] rounds = new GameRound[3];
+        GameRound[] rounds = new GameRound[GameConstants.COUNT_OF_GAMES];
 
         for (int i = 0; i < GameConstants.COUNT_OF_GAMES; i++) {
             rounds[i] = generateQuestion();

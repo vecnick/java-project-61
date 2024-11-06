@@ -9,7 +9,7 @@ public class Prime {
     private static final String GAME_RULE = "Answer 'yes' if given number is prime. Otherwise answer 'no'.";
 
     public static void game() {
-        GameRound[] rounds = new GameRound[3];
+        GameRound[] rounds = new GameRound[GameConstants.COUNT_OF_GAMES];
 
         for (int i = 0; i < GameConstants.COUNT_OF_GAMES; i++) {
             rounds[i] = generateQuestion();

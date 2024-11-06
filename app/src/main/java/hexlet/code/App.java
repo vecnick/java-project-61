@@ -32,6 +32,7 @@ public class App {
             case "5" -> Progression.game();
             case "6" -> Prime.game();
             default -> {
+                System.out.println("Game number " + userChoice + " doesn't exist");
                 scanner.close();
                 return;
             }
